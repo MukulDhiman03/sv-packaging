@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+1. DaisyUI Theme System Samajhna
 
-## Getting Started
+DaisyUI apne pre-built themes ke through colors control karta hai.
 
-First, run the development server:
+Ye themes HTML ke data-theme attribute pe based hoti hain.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Example:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<html data-theme="light">  <!-- Light theme apply -->
+<html data-theme="dark">   <!-- Dark theme apply -->
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Tum data-theme ka value change karke theme switch kar sakte ho.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Theme Toggle ka Core Logic
 
-## Learn More
+Toggle ka matlab:
 
-To learn more about Next.js, take a look at the following resources:
+Agar light theme active hai → dark kar do.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Agar dark theme active hai → light kar do.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Matlab tumhe:
 
-## Deploy on Vercel
+Ek state rakhni hai (current theme ka naam store karne ke liye).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Button click par theme ka naam change karna hai.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+HTML ke <html> element pe data-theme attribute update karna hai.
+
+3. Steps in Flow
+
+Initial Theme Decide Karna
+
+Default light ho sakta hai.
+
+Ya user ki system preference detect karke set kar sakte ho (optional).
+
+Theme Change Karna
+
+User button click kare → state ka value light ↔ dark switch ho.
+
+Example:
+
+setTheme(theme === "light" ? "dark" : "light");
+
+HTML me Apply Karna
+
+JavaScript se HTML tag ka data-theme set kar do:
+
+document.documentElement.setAttribute("data-theme", theme);
+
+Optional: Save in Local Storage
+
+Refresh ke baad bhi theme same rahe iske liye localStorage me save karo.
+
+Next time load hone par localStorage ka value read karke theme set karo.
+
+4. DaisyUI ka Kaam
+
+Tum sirf data-theme ka naam change karoge.
+
+DaisyUI automatically us theme ke colors, background, buttons, text color sab set kar dega — tumhe manual CSS likhne ki zarurat nahi.
+
+5. Toggle Implementation Types
+
+Button Toggle → Simple button jo click par theme switch kare.
+
+Switch / Checkbox → DaisyUI ka pre-made toggle switch (swap class) use karke animated icon bana sakte ho.
+
+Navbar Integration → Navbar me icon rakh ke theme change karna.
+
+📌 Summary
+Theme toggle = State (light/dark) + Button click par data-theme change + (optional) localStorage
+Baaki styling DaisyUI handle karega.
