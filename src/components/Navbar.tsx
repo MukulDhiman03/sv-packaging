@@ -91,8 +91,8 @@ const Navbar = () => {
                 </ul>
             </div>
 
-            {/* Right - Contact Button */}
-            <div className="navbar-end">
+            {/* Right - Contact Button (only large screens) */}
+            <div className="navbar-end hidden lg:flex">
                 <a className="btn btn-primary text-lg font-semibold">
                     Contact / Enquiry 📞
                 </a>
